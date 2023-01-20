@@ -31,6 +31,7 @@ Stable names for PluginLoader instances across Ansible versions.
 """
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 import ansible.errors
@@ -38,18 +39,18 @@ import ansible.errors
 import ansible_mitogen.utils
 
 __all__ = [
-    'action_loader',
-    'become_loader',
-    'connection_loader',
-    'module_loader',
-    'module_utils_loader',
-    'shell_loader',
-    'strategy_loader',
+    "action_loader",
+    "become_loader",
+    "connection_loader",
+    "module_loader",
+    "module_utils_loader",
+    "shell_loader",
+    "strategy_loader",
 ]
 
 
 ANSIBLE_VERSION_MIN = (2, 10)
-ANSIBLE_VERSION_MAX = (2, 13)
+ANSIBLE_VERSION_MAX = (2, 14)
 
 NEW_VERSION_MSG = (
     "Your Ansible version (%s) is too recent. The most recent version\n"
@@ -74,14 +75,10 @@ def assert_supported_release():
     """
     v = ansible_mitogen.utils.ansible_version
     if v[:2] < ANSIBLE_VERSION_MIN:
-        raise ansible.errors.AnsibleError(
-            OLD_VERSION_MSG % (v, ANSIBLE_VERSION_MIN)
-        )
+        raise ansible.errors.AnsibleError(OLD_VERSION_MSG % (v, ANSIBLE_VERSION_MIN))
 
     if v[:2] > ANSIBLE_VERSION_MAX:
-        raise ansible.errors.AnsibleError(
-            NEW_VERSION_MSG % (v, ANSIBLE_VERSION_MAX)
-        )
+        raise ansible.errors.AnsibleError(NEW_VERSION_MSG % (v, ANSIBLE_VERSION_MAX))
 
 
 # this is the first file our strategy plugins import, so we need to check this here
